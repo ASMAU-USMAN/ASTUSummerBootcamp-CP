@@ -1,0 +1,24 @@
+t = int(input())
+
+for _ in range(t):
+    n, q = map(int, input().split())
+    a = list(map(int, input().split()))
+
+    prefix = [0]
+    for x in a:
+        prefix.append(prefix[-1] + x)
+
+    total = prefix[-1]
+
+    for _ in range(q):
+        l, r, k = map(int, input().split())
+
+        old_range = prefix[r] - prefix[l - 1]
+        length = r - l + 1
+
+        new_sum = total - old_range + length * k
+
+        if new_sum % 2:
+            print("YES")
+        else:
+            print("NO")
